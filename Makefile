@@ -4,10 +4,11 @@ all: c99conv$(EXT) c99wrap$(EXT)
 
 OBJS = convert.o
 
-CC=/opt/local/bin/clang-mp-3.2
+CC=clang
 LD=$(CC)
-CFLAGS=-I/opt/local/libexec/llvm-3.2/include -g
-LDFLAGS=-L/opt/local/libexec/llvm-3.2/lib -g
+
+CFLAGS=$(shell llvm-config --cflags) -g
+LDFLAGS=$(shell llvm-config --ldflags) -g
 LIBS=-lclang
 
 clean:
